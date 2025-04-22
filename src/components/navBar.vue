@@ -14,10 +14,9 @@
                 <div class="contact-box d-flex flex-column"> 
                     <p class="socialsText">Get in Touch:</p>
                     <div class="d-flex justify-content-left">
-                        <ContactCircle link="https://linkedin.com/in/yourusername" iconClass="bi bi-linkedin" style="animation-delay: 1.7;"/>
-                        <ContactCircle link="https://github.com/yourusername" iconClass="bi bi-github" style="animation-delay: 1.3s;" />
-                        <ContactCircle link="https://linkedin.com/in/yourusername" iconClass="bi bi-envelope-fill" style="animation-delay: 1s;" />
-                        <ContactCircle link="https://linkedin.com/in/yourusername" iconClass="bi bi-telephone-fill" style="animation-delay: 1.5s;" />
+                        <ContactCircle link="https://www.linkedin.com/in/nikolai-jensen-472577195/" name="Linkedin" iconClass="bi bi-linkedin" style="animation-delay: 1.7;"/>
+                        <ContactCircle link="https://github.com/Nikolaihoej" iconClass="bi bi-github" name="Github" style="animation-delay: 1.3s;" />
+                        <ContactCircle link="mailto:nikolaihjensen@hotmail.com" iconClass="bi bi-envelope-fill" name="E-mail" style="animation-delay: 1s;" />
                     </div>
                 </div>
             </div>

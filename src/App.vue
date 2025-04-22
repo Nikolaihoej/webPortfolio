@@ -12,8 +12,8 @@
   </footer>
 
   <!-- Scroll to Top Button -->
-  <button v-show="showScrollToTop" name="Back to the top" @click="scrollToTop" class="scroll-to-top">
-    <i class="bi bi-arrow-up"></i>
+  <button v-show="showScrollToTop" @click="scrollToTop" class="scroll-to-top">
+    <i class="bi bi-arrow-up d-flex justify-content-center"></i>
   </button>
 </template>
 

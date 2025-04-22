@@ -4,8 +4,8 @@
             <h1 class="mt-5 mb-5">About me</h1>
         </section>
         <div class="aboutContent text-white my-3 d-flex flex-column flex-md-row align-items-center">
-            <div class="aboutImage d-flex justify-content-end col-md-5">
-                <img class="responsiveImage" src="../assets/images/nikologo.png" alt="niko">
+            <div class="aboutImage col-md-5">
+                <img class="responsiveImage" src="../assets/images/nikonewlogo.png" alt="niko">
             </div>
             <div class="aboutText col-md-5">
                 <p class=" lh-lg">
@@ -40,10 +40,12 @@
         padding: 20px;
         max-width: 100%;
         height: auto;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .responsiveImage {
-        max-width: 100%;
+        max-width: 50%;
         height: auto;
         border-radius: 50%;
         box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
@@ -58,6 +60,14 @@
             max-width: 100%;
             font-size: 14px;
             border-left: none;
+        }
+
+        .aboutImage {
+            justify-content: center; /* Center on mobile */
+        }
+
+        .responsiveImage {
+            max-width: 80%;
         }
         .aboutBox {
             padding-bottom: 50px;

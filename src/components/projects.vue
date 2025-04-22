@@ -17,32 +17,40 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
-  import ProjectCard from './projectCard.vue';
+  import { ref } from "vue";
+  import ProjectCard from "./projectCard.vue";
   
   const projects = ref([
     {
       id: 1,
-      title: 'PugRun',
-      description: 'PugRun is a vanilla JavaScript game that I created for fun one summer between semester writings in my education. I chose to further develop PugRun so I could bring the game to a JavaScript exam.',
-      image: new URL('@/assets/images/PugRun.png', import.meta.url).href,
-      link: 'https://github.com/Nikolaihoej/PugRun',
+      title: "PugRun",
+      description: "PugRun is a vanilla JavaScript game that I created for fun one summer between semester writings in my education. I chose to further develop PugRun so I could bring the game to a JavaScript exam.",
+      image: new URL("@/assets/images/PugRun.png", import.meta.url).href,
+      link: "https://github.com/Nikolaihoej/PugRun",
       disabled: false
     },
     {
       id: 2,
-      title: 'This Portfolio',
-      description: 'This Portfolio is a project I created to showcase my skills and projects. I used Vue.js to build the site and added animations with Vanta.js and bootstrap. The site is fully responsive and optimized for performance.',
-      image: new URL('@/assets/images/placeholder.jpg', import.meta.url).href,
-      link: 'http://example.com/project-two',
+      title: "This Portfolio",
+      description: "This Portfolio is a project I created to showcase my skills and projects. I used Vue.js to build the site and added animations with Vanta.js and bootstrap. The site is fully responsive and optimized for performance.",
+      image: new URL("@/assets/images/nikolwebsite.jpg", import.meta.url).href,
+      link: "https://github.com/Nikolaihoej/webPortfolio",
       disabled: false
     },
     {
       id: 3,
-      title: 'Soon to come',
-      description: '',
-      image: new URL('@/assets/images/placeholder.jpg', import.meta.url).href,
-      link: 'http://example.com/project-two',
+      title: "Bachelor Project",
+      description: "This is the frontend for my bachelor's project. The project is a business intelligence tool for small and medium-sized companies. The goal was to make it easier for companies to use their data and make better decisions based on that data.",
+      image: new URL("@/assets/images/Biezy.jpg", import.meta.url).href,
+      link: "https://github.com/Nikolaihoej/BA-BI-frontend",
+      disabled: false
+    },
+    {
+      id: 4,
+      title: "Soon to come",
+      description: "",
+      image: new URL("@/assets/images/placeholder.jpg", import.meta.url).href,
+      link: "http://example.com/project-two",
       disabled: true
     },
     // Add more projects as needed
