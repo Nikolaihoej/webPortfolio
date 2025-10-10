@@ -1,153 +1,183 @@
 <template>
-  <h1 class="experienceHeader col-12 d-flex justify-content-center text-light fs-1">Experience</h1>
-  <div class="d-flex flex-row justify-content-center">
-      <div class="p-2">
-          <section id="experience" class="experience container mt-5">
-              <h2 class="mb-4">Experience & Education</h2>
-              <p>This is what i have been doing lastest</p>
-              <div class="timeline">
-                  <div v-for="(item, index) in combinedTimeline" :key="index" class="timeline-item">
-                      <div class="timeline-content">
-                          <h3 class="h5">{{ item.title || item.degree }}</h3>
-                          <p class="mb-1"><strong>{{ item.title ? 'Company:' : 'Institution:' }}</strong> {{ item.company || item.institution }}</p>
-                          <p class="mb-0"><strong>Duration:</strong> {{ item.duration }}</p>
-                      </div>
-                  </div>
+  <section id="experience" class="container">
+    <h2 class="experienceHeader text-center pt-5 mb-5 ">Experience</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="section-title mb-4">Work Experience</h2>
+        <ul class="timeline">
+          <li
+            v-for="(job, index) in jobs" :key="job.title" class="timeline-item modern-fade-in" v-intersect :style="{ transitionDelay: (index * 200) + 'ms' }">
+            <div class="timeline-content modern-card">
+              <div>
+                <h3 class="h5 mb-1 fw-semibold">{{ job.title }}</h3>
+                <p class="mb-1"><strong>Company:</strong> {{ job.company }}</p>
+                <p class="mb-1"><strong>Duration:</strong> {{ job.duration }}</p>
+                <p v-if="job.description" class="mb-0">{{ job.description }}</p>
               </div>
-          </section>
+            </div>
+          </li>
+        </ul>
       </div>
-  </div>
+      <div class="col-md-6">
+        <h2 class="section-title mb-4">Education</h2>
+        <ul class="timeline">
+          <li v-for="(edu, index) in education" :key="index" class="timeline-item modern-fade-in" v-intersect :style="{ transitionDelay: (index * 200) + 'ms' }">
+            <div class="timeline-content modern-card">
+              <div>
+                <h3 class="h5 mb-1 fw-semibold">{{ edu.degree }}</h3>
+                <p class="mb-1"><strong>Institution:</strong> {{ edu.institution }}</p>
+                <p class="mb-1"><strong>Duration:</strong> {{ edu.duration }}</p>
+                <p v-if="edu.description" class="mb-0">{{ edu.description }}</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
-const jobs = [
-  {
-      title: 'Web Developer (Intern)',
-      company: 'Ordbogen.com',
-      duration: 'aug 2024 - oct 2024'
-  },
-  {
-      title: 'MultiMedia Designer (Intern)',
-      company: 'Ordbogen.com',
-      duration: 'feb 2023 - apr 2023'
-  },
-  {
-      title: 'Student Assistant',
-      company: 'UCL - Erhvervsakademi og Professionshøjskole.',
-      duration: 'Jan 2022 - jan 2023'
-  }
-];
+import { ref } from 'vue'
 
-const education = [
+const vIntersect = {
+  mounted(el) {
+    el.classList.add('is-hidden');
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+  }
+};
+
+const jobs = ref([
   {
-      degree: 'Profession Bachelor in Web Development',
-      institution: 'UCL - Erhvervsakademi og Professionshøjskole.',
-      duration: '2023 - 2025'
+    title: 'App Developer / Digital Coordinator (Project position)',
+    company: 'Total Ejendom Service',
+    duration: 'Aug 2025 - Oct 2025',
+    description: 'Developed and coordinated digital solutions for property management.'
   },
   {
-      degree: 'MultiMedia Designer',
-      institution: 'UCL - Erhvervsakademi og Professionshøjskole.',
-      duration: '2017 - 2019'
+    title: 'Digital Coordinator (Internship)',
+    company: 'Total Ejendom Service',
+    duration: 'Apr 2025 - Jun 2025',
+    description: 'Assisted in digital transformation projects and internal communications.'
+  },
+  {
+    title: 'Web Developer (Internship)',
+    company: 'Ordbogen.com',
+    duration: 'Aug 2024 - Oct 2024',
+    description: 'Contributed to web application development and UI improvements.'
+  },
+  {
+    title: 'MultiMedia Designer (Internship)',
+    company: 'Ordbogen.com',
+    duration: 'Feb 2023 - Apr 2023',
+    description: 'Designed multimedia content for educational platforms.'
+  },
+  {
+    title: 'Student Assistant',
+    company: 'UCL - Erhvervsakademi og Professionshøjskole',
+    duration: 'Jan 2022 - Jan 2023',
+    description: 'Supported faculty with digital tools and student engagement.'
   }
-];
+]);
 
-const combinedTimeline = [...jobs, ...education];
+const education = ref([
+  {
+    degree: 'Professional Bachelor in Web Development',
+    institution: 'UCL - Erhvervsakademi og Professionshøjskole',
+    duration: '2023 - 2025',
+    description: 'Specialized in modern web technologies and project management.'
+  },
+  {
+    degree: 'Multimedia Designer',
+    institution: 'UCL - Erhvervsakademi og Professionshøjskole',
+    duration: '2017 - 2019',
+    description: 'Focused on digital design, UX/UI, and multimedia production.'
+  }
+]);
+
+// Register the directive for this component
+defineExpose({ directives: { intersect: vIntersect } });
 </script>
 
 <style scoped>
-.experience {
-  padding: 20px;
-  border-radius: 8px;
-  user-select: none;
-}
-
-.experience h2 {
-  font-size: 24px;
+.experienceHeader {
+  font-size: 2.5rem;
   color: #fff;
 }
 
-.experience p {
+.section-title {
+  font-size: 1.35rem;
   color: #fff;
+  border-bottom: 4px solid #fff;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modern-card {
+  background: #251b39;
+  border-radius: 12px;
+  padding: 22px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  transition: transform 0.18s, box-shadow 0.18s;
+  border: 1px solid #3a2e5a;
+  margin-bottom: 22px;
+}
+.modern-card:hover {
+  transform: translateY(-4px) scale(1.025);
+  box-shadow: 0 8px 32px rgba(160,132,232,0.18);
 }
 
 .timeline {
-  position: relative;
-  padding: 20px 0;
   list-style: none;
-}
-
-.timeline:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: #ddd;
-  left: 50%;
-  margin-left: -1px;
-}
-
-.timeline-item {
-  position: relative;
-  margin: 20px 0;
-}
-
-.timeline-item:before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border: 2px solid #ddd;
-  border-radius: 50%;
-  margin-left: -10px;
-  top: 0;
-}
-
-.timeline-content {
-  padding: 20px;
-  background: #1f1a29;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  position: relative;
-  width: 45%;
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-
+  padding-left: 0;
+  margin: 0;
 }
 
 .timeline-content h3 {
   color: #fff;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
 .timeline-content p {
   color: #fff;
+  opacity: 0.60;
+  font-size: 1rem;
+  margin-bottom: 4px;
 }
 
-.timeline-item:nth-child(odd) .timeline-content {
-  left: 0;
+/* Intersection Observer Animation */
+.timeline-item.is-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.timeline-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(.4,0,.2,1) var(--delay,0ms), transform 0.6s cubic-bezier(.4,0,.2,1) var(--delay,0ms);
 }
 
-.timeline-item:nth-child(even) .timeline-content {
-  left: 55%;
-}
-
-@media (max-width: 768px) {
-  .experience {
-      padding: 10px;
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .experience h2 {
-      font-size: 20px;
-  }
-
-  .timeline-content {
-      width: 100%;
-      left: 0 !important;
-  }
-
-  .timeline-item:nth-child(even) .timeline-content {
-      left: 0;
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
 }
 </style>

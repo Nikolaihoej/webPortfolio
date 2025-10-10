@@ -1,177 +1,280 @@
 <template>
-    <div class="navbar" >
-        <div class="navContent">
-            <a href="#about" class="nav-link">About me</a>
-            <span class="separator">|</span>
-            <a href="#projects" class="nav-link">Projects</a>
-            <span class="separator">|</span>
-            <a href="#experience" class="nav-link">Experience</a>
-        </div>
-        <div class="navAboutContainer d-flex flex-row">
-            <div class="navAbout">
-                <h2>HI! Welcome to my Portfolio</h2>
-                <p>My name is Nikolai! I'm a Web-developer & Multi-media designer specializing in UI/UX. I create functional, visually appealing web apps with expertise in mock-ups, photo editing, and redesigns. With an AP Degree in Multimedia Design and a PBA in Web Development (Jan 2025), I blend technical skills with a passion for design.</p>
-                <div class="contact-box d-flex flex-column"> 
-                    <p class="socialsText">Get in Touch:</p>
-                    <div class="d-flex justify-content-left">
-                        <ContactCircle link="https://www.linkedin.com/in/nikolai-jensen-472577195/" name="Linkedin" iconClass="bi bi-linkedin" style="animation-delay: 1.7;"/>
-                        <ContactCircle link="https://github.com/Nikolaihoej" iconClass="bi bi-github" name="Github" style="animation-delay: 1.3s;" />
-                        <ContactCircle link="mailto:nikolaihjensen@hotmail.com" iconClass="bi bi-envelope-fill" name="E-mail" style="animation-delay: 1s;" />
-                    </div>
-                </div>
-            </div>
-            <div class="navImage">
-                <img src="../assets/images/myselftwo.jpg" alt="myself" class="img-fluid">
-            </div>
-        </div>
+  <nav class="navRoot" :class="{ rounded: isSticky }" aria-label="Main navigation">
+    <div class="navContent">
+      <button class="burger" :class="{ open: menuOpen }" @click="toggleMenu" :aria-expanded="menuOpen.toString()" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="sectionLinks horizontal" role="menubar">
+        <a v-for="link in links" :key="link.id" href="javascript:void(0)" class="nav-link" :class="{ active: activeSection === link.id }" role="menuitem" @click.prevent="handleNavClick(link.id)">{{ link.label }}</a>
+      </div>
+      <transition name="side-fade">
+        <aside class="sideMenu" v-if="menuOpen" aria-label="Mobile navigation">
+          <a v-for="link in links" :key="link.id" href="javascript:void(0)" class="side-link" :class="{ active: activeSection === link.id }" @click.prevent="handleNavClick(link.id)">{{ link.label }}</a>
+        </aside>
+      </transition>
+      <div class="sideMenuOverlay" v-if="menuOpen" @click="closeMenu" aria-hidden="true"></div>
     </div>
+  </nav>
 </template>
 
 <script setup>
-import ContactCircle from './contactIconComponent.vue';
+import { ref, onMounted, onUnmounted } from 'vue'
 
+const links = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About me' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'socials', label: 'Socials' }
+]
+
+const isSticky = ref(false)
+const activeSection = ref(links[0].id)
+const menuOpen = ref(false)
+const stickyOffset = 100
+
+function toggleMenu() { menuOpen.value = !menuOpen.value }
+function closeMenu() { menuOpen.value = false }
+
+function handleNavClick(id) {
+  const el = document.getElementById(id)
+  if (el) {
+    const nav = document.querySelector('.navRoot')
+    const navHeight = nav ? nav.offsetHeight : 0
+    const rect = el.getBoundingClientRect()
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    const targetY = rect.top + scrollTop - navHeight - 8
+    window.scrollTo({ top: targetY, behavior: 'smooth' })
+    activeSection.value = id
+    closeMenu()
+  }
+}
+
+function updateStickyState() { isSticky.value = window.scrollY > stickyOffset }
+
+function updateActiveSection() {
+  const nav = document.querySelector('.navRoot')
+  const navHeight = nav ? nav.offsetHeight : 0
+  let closest = null
+  let minDist = Infinity
+  links.forEach(link => {
+    const el = document.getElementById(link.id)
+    if (el) {
+      const rect = el.getBoundingClientRect()
+      const dist = Math.abs(rect.top - navHeight)
+      if (dist < minDist) {
+        minDist = dist
+        closest = link.id
+      }
+    }
+  })
+  if (closest) activeSection.value = closest
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', updateStickyState, { passive: true })
+  window.addEventListener('scroll', updateActiveSection, { passive: true })
+  updateStickyState()
+  updateActiveSection()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateStickyState)
+  window.removeEventListener('scroll', updateActiveSection)
+})
 </script>
 
 <style scoped>
-@keyframes jump {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
+html { scroll-behavior: smooth; }
+
+.navRoot {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition:  background .35s, backdrop-filter .35s, border-radius .35s, box-shadow .35s;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  border-radius: 32px;
+  overflow: hidden;
 }
 
-@keyframes jump-two {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+/* Sticky, rounded navbar */
+.navRoot.rounded {
+  background: rgba(31, 26, 41, 0.65);
+  backdrop-filter: blur(12px) saturate(1.2);
+  box-shadow: 0 2px 24px 0 rgba(0,0,0,0.12);
+  border-radius: 32px;
 }
 
-.contact-box .contact-circle {
-    animation: jump 2s infinite;
-}
-
-.socialsText {
-    font-family: 'JetBrains Mono', sans-serif;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-
-}
-
-.navbar {
-    color: #fff;
-    min-height: 1000px;
-    margin-bottom: 455px;
-}
 
 .navContent {
-    z-index: 1;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 0;
+  transition: padding .35s;
+  position: relative;
 }
 
+.sectionLinks {
+  display: flex;
+  color: white;
+}
+.sectionLinks.horizontal {
+  flex-direction: row;
+  gap: 55px;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Links */
 .nav-link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold; 
-    margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  transition: color .2s;
+  font-size: 1.5rem;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  border-radius: 4px;
+  left: 0;
+  bottom: -4px;
+  height: 4px;
+  width: 0;
+  background: currentColor;
+  transition: width .26s;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: #bbb3b3;
+  font-weight: 600;
 }
 
-.nav-link:hover {
-    text-decoration: underline;
+/* Burger styles */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 102;
+  overflow: visible;
+  padding: 0;
+  gap: 6px; /* space between lines */
 }
 
-.separator {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
+.burger span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all .3s;
+  position: relative;
+  display: block;
 }
 
-.navAboutContainer {
+.burger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Side menu styles */
+.sideMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 220px;
+  height: 100%;
+  background: #1f1a29;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  padding: 60px 24px 24px 24px;
+  z-index: 101;
+  gap: 32px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.side-fade-enter-active, .side-fade-leave-active {
+  transition: transform 0.35s;
+}
+.side-fade-enter-from, .side-fade-leave-to {
+  transform: translateX(100%);
+}
+.side-fade-enter-to, .side-fade-leave-from {
+  transform: translateX(0);
+}
+
+.side-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 8px 8px;
+  border-radius: 4px;
+  transition: background .2s, color .2s;
+}
+.side-link.active,
+.side-link:hover {
+  background: #29213a;
+  color: #bbb3b3;
+}
+
+/* Overlay for side menu */
+.sideMenuOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 100;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .navRoot {
+    border-radius: 0;
     width: 100%;
-    z-index: 1;
+    max-width: 100%;
+  }
+  .navRoot.rounded {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .navContent {
+    justify-content: flex-end;
+
+    padding: 18px 0;
+  }
+  .sectionLinks.horizontal {
+    display: none;
+  }
+  .burger {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.navImage{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.navImage img {
-    max-width: 455px;
-    height: auto;
-    border-radius: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-    animation: jump-two 4s infinite;
-}
-
-.navAbout {
-    max-width: 45%;
-    margin: 20px;
-    background-color: #1f1a29;
-    padding: 16px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-}
-
-.navAbout p {
-    color: hsl(0, 0%, 80%);
-    font-size: 18px;
-    line-height: 2.5rem;
-}
-
-
-@media (max-width: 768px) {
-    .navbar {
-        margin-bottom: 100px;
-    }
-    .navAboutContainer {
-        flex-direction: column-reverse;
-    } 
-    .navContent {
-        justify-content: space-around;
-    }
-    .nav-link {
-        font-size: 18px; 
-        margin: 5px 10px;
-    }
-
-    .contact-box {
-        align-items: center;
-    }
-
-    .navImage img {
-        max-width: 70%;
-    }
-
-    .navAbout {
-        max-width: 90%;
-    }
-    .navAbout p {
-        font-size: 14px;
-        line-height: 2rem;
-    }
-    .responsiveImage {
-        max-width: 80%;
-    }
-    .navImage {
-        display: flex;
-        margin-top: 25px;
-        margin-bottom: 25px;
-        justify-content: center;
-    }
+    background-color: #29213a;
+    margin-right: 16px;
+    border-radius: 6px;
+  }
+  .burger.open {
+    background-color: transparent;
+  }
 }
 </style>

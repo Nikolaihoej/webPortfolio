@@ -1,102 +1,102 @@
 <template>
-    <section id="projects">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center mt-5 mb-3">
-            <h1>Projects</h1>
-          </div>
-          <div>
-            <p class="textInfo text-center mb-5 text-light">These are some of the projects I have created myself. Some were developed as part of my education in web development, while others were passion projects I worked on in my spare time.</p>
-          </div>
-        </div>
-        <div class="row">
-          <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
-        </div>>
+  <section id="projects">
+    <div class="container">
+      <div class="sectionTitle text-center">
+        <h1>Projects</h1>
       </div>
-    </section>
-  </template>
+      <div class="sectionDescription text-center pb-4">
+        <p>Here are some of my recent projects. Showcasing my skills and creativity in web development and design.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="align-items-center justify-content-center d-flex flex-wrap ">
+        <div v-for="(project, index) in projects" :key="project.id" class="project-fade-in" v-intersect:style="{ transitionDelay: (index * 200) + 'ms' }" @click="openBlog(project)" style="cursor: pointer;">
+          <ProjectCard :project="project" />
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
   
-  <script setup>
-  import { ref } from "vue";
-  import ProjectCard from "./projectCard.vue";
+<script setup>
+import { ref } from "vue";
+import ProjectCard from "./projectCard.vue";
+import { useProjectsStore } from '../stores/projectsData.js';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+
+const projectsStore = useProjectsStore();
+const projects = projectsStore.projects;
+
+// Intersection Observer directive for fade-in animation
+const vIntersect = {
+  mounted(el) {
+    el.classList.add('is-hidden');
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+  }
+};
+
+// Register the directive for this component
+defineExpose({ directives: { intersect: vIntersect } });
+
+function openBlog(project) {
+  router.push(`/blog/${project.id}`);
+}
+</script>
   
-  const projects = ref([
-    {
-      id: 1,
-      title: "PugRun",
-      description: "PugRun is a vanilla JavaScript game that I created for fun one summer between semester writings in my education. I chose to further develop PugRun so I could bring the game to a JavaScript exam.",
-      image: new URL("@/assets/images/PugRun.png", import.meta.url).href,
-      link: "https://github.com/Nikolaihoej/PugRun",
-      disabled: false
-    },
-    {
-      id: 2,
-      title: "This Portfolio",
-      description: "This Portfolio is a project I created to showcase my skills and projects. I used Vue.js to build the site and added animations with Vanta.js and bootstrap. The site is fully responsive and optimized for performance.",
-      image: new URL("@/assets/images/nikolwebsite.jpg", import.meta.url).href,
-      link: "https://github.com/Nikolaihoej/webPortfolio",
-      disabled: false
-    },
-    {
-      id: 3,
-      title: "Bachelor Project",
-      description: "This is the frontend for my bachelor's project. The project is a business intelligence tool for small and medium-sized companies. The goal was to make it easier for companies to use their data and make better decisions based on that data.",
-      image: new URL("@/assets/images/Biezy.jpg", import.meta.url).href,
-      link: "https://github.com/Nikolaihoej/BA-BI-frontend",
-      disabled: false
-    },
-    {
-      id: 4,
-      title: "Soon to come",
-      description: "",
-      image: new URL("@/assets/images/placeholder.jpg", import.meta.url).href,
-      link: "http://example.com/project-two",
-      disabled: true
-    },
-    // Add more projects as needed
-  ]);
-  </script>
-  
-  <style scoped>
-  h1 {
-    color: #fff;
+<style scoped>
+section {
+  min-height: 100vh;
+}
+
+.sectionTitle {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.sectionDescription {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0px 25% 0px 25%;
+}
+
+h1 {
+  color: #fff;
+}
+
+/* Fade-in animation for project cards */
+.project-fade-in.is-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.project-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(.4,0,.2,1) var(--delay,0ms), transform 0.6s cubic-bezier(.4,0,.2,1) var(--delay,0ms);
+}
+
+@media (max-width: 900px) {
+  .sectionDescription {
+    font-size: 1rem;
+    padding: 0 18px 18px 18px;
+    margin: 0;
   }
-  section {
-    min-height: 100vh;
-  }
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .row {
-    width: 100%;
-  }
-  .col-12 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .sectionTitle h1 {
+    font-size: 2.5rem;
+    padding: 18px 18px 0 18px;
   }
   
-  .textInfo {
-    font-size: 22px;
-    line-height: 2.5rem;
+  .sectionTitle {
+    margin-bottom: 0;
   }
-  
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
-  }
-  @media (max-width: 576px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-  }
-  @media (max-width: 320px) {
-    h1 {
-      font-size: 1rem;
-    }
-  }
-  </style>
+}
+</style>
