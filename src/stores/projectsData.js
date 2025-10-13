@@ -7,9 +7,9 @@ export const useProjectsStore = defineStore('projects', {
         id: 1,
         title: "TES ToolTracker",
         author: "Nikolai H Jensen",
-        date: "19th June 2024",
+        date: "2025",
         description: 'Developed in Google AppSheet, ToolTracker is an internal tool inventory and loan system designed to simplify equipment booking, tracking, and maintenance processes.',
-        highlightText: "Information page under construction",
+        highlightText: "Click the card for more information",
         image: new URL("@/assets/images/tooltrackerImg.svg", import.meta.url).href,
         content: [
             "I developed the entire solution from the ground up, gaining hands-on experience with AppSheet's application structure, database integration, and automation features. Through this project, I learned how to design efficient data models, implement conditional logic, and automate key workflows such as sending notification emails and archiving completed loans.",
@@ -17,9 +17,9 @@ export const useProjectsStore = defineStore('projects', {
             "The app is currently deployed internally, and I'm finalizing the documentation and fine-tuning the last details. Once real-world usage data and feedback are available, I'll update this page with new insights and screenshots."
         ],
         extraImages: [
-          new URL("@/assets/images/toolTrackerimages/toolTrackerApp.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppTwo.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppThree.jpg", import.meta.url).href
+          new URL("@/assets/images/toolTrackerimages/ttOne.svg", import.meta.url).href,
+          new URL("@/assets/images/toolTrackerimages/ttTwo.svg", import.meta.url).href,
+          new URL("@/assets/images/toolTrackerimages/ttThree.svg", import.meta.url).href
         ],
         link: "",
         disabled: false
@@ -28,9 +28,9 @@ export const useProjectsStore = defineStore('projects', {
         id: 2,
         title: "This Portfolio",
         author: "Nikolai H Jensen",
-        date: "",
-        description: 'This is my portfolio that I have made in Vue3 composition API and made with the intention of showcasing my skills.',
-        highlightText: "Information page under construction",
+        date: "2025",
+        description: 'This portfolio was developed using Vue 3 and the Composition API. It serves as a personal project to demonstrate my technical skills, design approach, and overall experience in frontend development.',
+        highlightText: "Click the card for more information",
         image: new URL("@/assets/images/portfolio.svg", import.meta.url).href,
         content: [
             "Paragraph one text here.",
@@ -38,12 +38,12 @@ export const useProjectsStore = defineStore('projects', {
             "Paragraph three text here."
         ],
         extraImages: [
-          new URL("@/assets/images/toolTrackerimages/toolTrackerApp.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppTwo.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppThree.jpg", import.meta.url).href
+          new URL("@/assets/images/portfolioImages/portOne.svg", import.meta.url).href,
+          new URL("@/assets/images/portfolioImages/portTwo.svg", import.meta.url).href,
+          new URL("@/assets/images/portfolioImages/portThree.svg", import.meta.url).href
         ],
         techIcons: [
-          "fa-brands fa-github",
+          "fa-brands fa-vuejs",
           "fa-brands fa-js",
           "fa-brands fa-html5",
           "fa-brands fa-css3-alt"
@@ -57,7 +57,7 @@ export const useProjectsStore = defineStore('projects', {
         author: "",
         date: "",
         description: "This Canva project showcases my expertise in graphic design and practical use of design theory in developing brochures and posters.",
-        highlightText: "Click the card to see the Design",
+        highlightText: "Click the card for more information",
         image: new URL("@/assets/images/tesBrochurer.svg", import.meta.url).href,
                 content: [
             "Paragraph one text here.",
@@ -65,15 +65,9 @@ export const useProjectsStore = defineStore('projects', {
             "Paragraph three text here."
         ],
         extraImages: [
-          new URL("@/assets/images/toolTrackerimages/toolTrackerApp.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppTwo.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppThree.jpg", import.meta.url).href
-        ],
-        techIcons: [
-          "fa-brands fa-github",
-          "fa-brands fa-js",
-          "fa-brands fa-html5",
-          "fa-brands fa-css3-alt"
+          new URL("@/assets/images/tesBrochureAndPosters/ttpOne.svg", import.meta.url).href,
+          new URL("@/assets/images/tesBrochureAndPosters/ttpTwo.svg", import.meta.url).href,
+          new URL("@/assets/images/tesBrochureAndPosters/ttpThree.svg", import.meta.url).href
         ],
         link: "https://www.canva.com/design/DAGpY4iLOR0/VaFxSh98Pgb3hfck2yxtKQ/view?utm_content=DAGpY4iLOR0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h89c592f781#1",
         disabled: false
@@ -85,7 +79,7 @@ export const useProjectsStore = defineStore('projects', {
         author: "",
         date: "",
         description: "This is my bachelor project that I worked on during my studies as a web-developer and it's made as a group project where i mainly handled the frontend.",
-        highlightText: "Click the card to go to the GitHub Repo",
+        highlightText: "Click the card for more information",
         image: new URL("@/assets/images/Biezy.svg", import.meta.url).href,
                 content: [
             "Paragraph one text here.",
@@ -93,15 +87,18 @@ export const useProjectsStore = defineStore('projects', {
             "Paragraph three text here."
         ],
         extraImages: [
-          new URL("@/assets/images/toolTrackerimages/toolTrackerApp.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppTwo.jpg", import.meta.url).href,
-          new URL("@/assets/images/toolTrackerimages/toolTrackerAppThree.jpg", import.meta.url).href
+          new URL("@/assets/images/biezyBachelor/beOne.svg", import.meta.url).href,
+          new URL("@/assets/images/biezyBachelor/beTwo.svg", import.meta.url).href,
+          new URL("@/assets/images/biezyBachelor/beThree.svg", import.meta.url).href
         ],
         techIcons: [
-          "fa-brands fa-github",
-          "fa-brands fa-js",
+          "fa-brands fa-laravel",
+          "fa-brands fa-php",
+          "fa-brands fa-vuejs",
           "fa-brands fa-html5",
+          "fa-brands fa-js",
           "fa-brands fa-css3-alt"
+          
         ],
         link: "https://github.com/Nikolaihoej/BA-BI-frontend",
         disabled: false
@@ -113,8 +110,6 @@ export const useProjectsStore = defineStore('projects', {
         date: "",
         description: "More projects are on the way! Im currently working on some exciting new projects that I can't wait to share with you. Stay tuned for updates!",
         image: new URL("@/assets/images/comingSoon.svg", import.meta.url).href,
-        
-        link: "http://example.com/project-two",
         disabled: true
       },
       // Add more projects as needed

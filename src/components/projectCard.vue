@@ -5,7 +5,6 @@
         <div class="card-info">
           <h1>{{ project.title }}</h1>
           <p>
-            {{ project.description }}
             <span class="bold" v-if="project.highlightText"> {{ project.highlightText }}</span>
           </p>
       </div>
@@ -132,11 +131,11 @@ function handleMouseLeave() {
   position: absolute;
   bottom: 0;
   color: var(--text-main);
-  transform: translateY(70%);
+  transform: translateY(10%);
   transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   width: 100%;
   z-index: 2;
-  min-height: 292px;
+  min-height: 100px;
 }
 .card-info p {
   opacity: 0;
