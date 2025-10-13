@@ -111,13 +111,13 @@ defineExpose({ directives: { intersect: vIntersect } });
 <style scoped>
 .experienceHeader {
   font-size: 2.5rem;
-  color: #fff;
+  color: var(--text-main);
 }
 
 .section-title {
   font-size: 1.35rem;
-  color: #fff;
-  border-bottom: 4px solid #fff;
+  color: var(--text-main);
+  border-bottom: 4px solid var(--text-main);
   padding-bottom: 8px;
   margin-bottom: 24px;
   letter-spacing: 1px;
@@ -127,7 +127,7 @@ defineExpose({ directives: { intersect: vIntersect } });
 }
 
 .modern-card {
-  background: #251b39;
+  background: var(--secondary-bg);
   border-radius: 12px;
   padding: 22px 28px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.10);
@@ -147,13 +147,13 @@ defineExpose({ directives: { intersect: vIntersect } });
 }
 
 .timeline-content h3 {
-  color: #fff;
+  color: var(--text-main);
   font-weight: 600;
   margin-bottom: 6px;
 }
 
 .timeline-content p {
-  color: #fff;
+  color: var(--text-main);
   opacity: 0.60;
   font-size: 1rem;
   margin-bottom: 4px;

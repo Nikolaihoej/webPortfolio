@@ -65,12 +65,12 @@ section {
 
 .sectionDescription {
   font-size: 1.2rem;
-  color: #fff;
+  color: var(--text-main);
   margin: 0px 25% 0px 25%;
 }
 
 h1 {
-  color: #fff;
+  color: var(--text-main);
 }
 
 /* Fade-in animation for project cards */

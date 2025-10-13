@@ -12,20 +12,14 @@ export const useProjectsStore = defineStore('projects', {
         highlightText: "Information page under construction",
         image: new URL("@/assets/images/tooltrackerImg.svg", import.meta.url).href,
         content: [
-            "Paragraph one text here.",
-            "Paragraph two text here.",
-            "Paragraph three text here."
+            "I developed the entire solution from the ground up, gaining hands-on experience with AppSheet's application structure, database integration, and automation features. Through this project, I learned how to design efficient data models, implement conditional logic, and automate key workflows such as sending notification emails and archiving completed loans.",
+            "Beyond development, I designed the logo, defined the app's overall structure and layout, and created a user guide to make onboarding straightforward and efficient.",
+            "The app is currently deployed internally, and I'm finalizing the documentation and fine-tuning the last details. Once real-world usage data and feedback are available, I'll update this page with new insights and screenshots."
         ],
         extraImages: [
           new URL("@/assets/images/toolTrackerimages/toolTrackerApp.jpg", import.meta.url).href,
           new URL("@/assets/images/toolTrackerimages/toolTrackerAppTwo.jpg", import.meta.url).href,
           new URL("@/assets/images/toolTrackerimages/toolTrackerAppThree.jpg", import.meta.url).href
-        ],
-        techIcons: [
-          "fa-brands fa-github",
-          "fa-brands fa-js",
-          "fa-brands fa-html5",
-          "fa-brands fa-css3-alt"
         ],
         link: "",
         disabled: false

@@ -120,7 +120,7 @@ html { scroll-behavior: smooth; }
 
 .sectionLinks {
   display: flex;
-  color: white;
+  color: var(--text-main);
 }
 .sectionLinks.horizontal {
   flex-direction: row;
@@ -133,7 +133,7 @@ html { scroll-behavior: smooth; }
 /* Links */
 .nav-link {
   text-decoration: none;
-  color: #fff;
+  color: var(--text-main);
   position: relative;
   transition: color .2s;
   font-size: 1.5rem;
@@ -154,7 +154,7 @@ html { scroll-behavior: smooth; }
   width: 100%;
 }
 .nav-link.active {
-  color: #bbb3b3;
+  color: var(--text-secondary);
   font-weight: 600;
 }
 
@@ -178,7 +178,7 @@ html { scroll-behavior: smooth; }
 .burger span {
   width: 28px;
   height: 3px;
-  background: #fff;
+  background: var(--text-main);
   border-radius: 2px;
   transition: all .3s;
   position: relative;
@@ -202,7 +202,7 @@ html { scroll-behavior: smooth; }
   right: 0;
   width: 220px;
   height: 100%;
-  background: #1f1a29;
+  background: var(--secondary-bg);
   box-shadow: -2px 0 16px rgba(0,0,0,0.12);
   display: flex;
   flex-direction: column;
@@ -224,7 +224,7 @@ html { scroll-behavior: smooth; }
 }
 
 .side-link {
-  color: #fff;
+  color: var(--text-main);
   text-decoration: none;
   font-size: 1.3rem;
   font-weight: 600;
@@ -234,8 +234,8 @@ html { scroll-behavior: smooth; }
 }
 .side-link.active,
 .side-link:hover {
-  background: #29213a;
-  color: #bbb3b3;
+  background: var(--text-hover);
+  color: var(--text-secondary);
 }
 
 /* Overlay for side menu */
@@ -269,7 +269,7 @@ html { scroll-behavior: smooth; }
   }
   .burger {
     display: flex;
-    background-color: #29213a;
+    background-color: var(--text-hover);
     margin-right: 16px;
     border-radius: 6px;
   }

@@ -115,7 +115,7 @@ onMounted(() => {
   justify-content: center;
   flex-direction: column;
   padding-top: 8%;
-  color: #fff;
+  color: var(--text-main);
 }
 
 .sectionTitle {
@@ -151,8 +151,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #251b39;
-  color: #fff;
+  background-color: var(--secondary-bg);
+  color: var(--text-main);
   z-index: 10;
   transition: transform 0.2s ease-in;
   box-shadow: rgba(46, 194, 187, 0.171) 0px 4px 16px, rgba(101, 187, 190, 0.164) 0px 8px 24px, rgba(77, 151, 147, 0.116) 0px 16px 56px;

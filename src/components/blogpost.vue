@@ -1,7 +1,7 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <button class="close-btn" @click="goBack">×</button>
     <div class="blogpost-page">
-      <button class="close-btn" @click="goBack">×</button>
       <div class="blogpost-container">
         <header class="blogpost-header">
           <div class="title-section">
@@ -14,12 +14,12 @@
                 <a v-if="project.link" :href="project.link" class="projectBtn btn btn-outline-light" target="_blank" rel="noopener noreferrer">Check it out</a>
               </div>
               <div class="extra-images" v-if="project.extraImages && project.extraImages.length">
-                <img class="extra-image" v-for="(img, idx) in project.extraImages" :key="idx" :src="img" :alt="`Extra image ${idx + 1}`"/>
+                <img class="extra-image" v-for="(img, index) in project.extraImages" :key="index" :src="img" :alt="`Extra image ${index + 1}`"/>
               </div>
           </div>
-          <h4 class="techTitle">Technologies Used</h4>
+          <h4 class="techTitle" v-if="showTechTitle">Technologies Used</h4>
           <section class="tech-icons" v-if="project.techIcons && project.techIcons.length">
-            <i v-for="(icon, idx) in project.techIcons" :key="idx" :class="['tech-icon', icon]" aria-hidden="true"></i>
+            <i v-for="(icon, index) in project.techIcons" :key="index" :class="['tech-icon', icon]" aria-hidden="true"></i>
           </section>
         </header>
 
@@ -27,7 +27,7 @@
         <section class="blogpost-content">
             <p>{{ project.description }}</p>
             <div v-if="Array.isArray(project.content)">
-            <p v-for="(paragraph, idx) in project.content" :key="idx">{{ paragraph }}</p>
+            <p v-for="(paragraph, index) in project.content" :key="index">{{ paragraph }}</p>
             </div>
             <div v-else-if="project.content">
             <p>{{ project.content }}</p>
@@ -40,6 +40,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useProjectsStore } from '../stores/projectsData.js';
 
@@ -47,6 +48,7 @@ const route = useRoute();
 const router = useRouter();
 const projectsStore = useProjectsStore();
 const project = projectsStore.getProjectById(Number(route.params.id));
+const showTechTitle = computed(() => Array.isArray(project.techIcons) && project.techIcons.length > 0);
 
 function goBack() {
   router.back();
@@ -77,14 +79,14 @@ function goBack() {
 }
 
 .techTitle {
-  color: #fff;
+  color: var(--text-main);
   margin-top: 8px;
   font-size: 1.3rem;
 }
 
 .tech-icons {
   display: flex;
-  color: #fff;
+  color: var(--text-main);
   font-size: 1.5rem;
   gap: 8px;
 }
@@ -99,7 +101,7 @@ function goBack() {
 h1 {
   font-size: 2.4rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-main);
   margin-bottom: 10px;
   line-height: 1.2;
 }
@@ -108,14 +110,14 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #bbb3b3;
+  color: var(--text-secondary);
   font-size: 1rem;
   margin-bottom: 10px;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  color: #fff;
+  color: var(--text-main);
   font-weight: 400;
   margin-bottom: 0.5rem;
 }
@@ -123,7 +125,7 @@ h1 {
 .blogpost-content {
   font-size: 1.15rem;
   line-height: 1.7;
-  color: #e0e0e0;
+  color: var(--text-secondary);
   margin-top: 8px;
 }
 
@@ -140,7 +142,7 @@ h1 {
 
 .close-btn {
   position: absolute;
-  top: 24px;
+  top: 0px;
   right: 32px;
   background: none;
   border: none;
@@ -151,7 +153,7 @@ h1 {
   transition: color 0.2s;
 }
 .close-btn:hover {
-  color: #ffa100;
+  color: var(--primary-bg);
 }
 
 .extra-images {

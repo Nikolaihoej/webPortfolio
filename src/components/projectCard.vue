@@ -131,7 +131,7 @@ function handleMouseLeave() {
   padding: 18px;
   position: absolute;
   bottom: 0;
-  color: #fff;
+  color: var(--text-main);
   transform: translateY(70%);
   transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
   width: 100%;

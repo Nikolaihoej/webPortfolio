@@ -101,7 +101,7 @@ const onTouchEnd = (e) => {
 
 <style scoped>
 .aboutContent {
-  background: #251b39;
+  background: var(--secondary-bg);
   position: relative;
   z-index: 10;
   height: 800px;
@@ -166,11 +166,11 @@ const onTouchEnd = (e) => {
 
 .aboutTitle {
   font-size: 2.5rem;
-  color: #fff;
+  color: var(--text-main);
   margin: 0;
 }
 .aboutText {
-  color: #fff;
+  color: var(--text-main);
   font-size: 1.2rem;
   line-height: 1.6;
 }
@@ -181,13 +181,13 @@ const onTouchEnd = (e) => {
   opacity: 0.5;
   transition: color 0.2s, background 0.2s, opacity 0.2s;
   font-weight: 600;
-  border: 4px solid #fff;
+  border: 4px solid var(--text-main);
 }
 .aboutNavButton:hover,
 .aboutNavButton.pending,
 .aboutNavButton.active {
-  background: #fff !important;
-  color: #1f1a29 !important;
+  background: var(--text-main) !important;
+  color: var(--text-hover) !important;
   opacity: 0.85;
 }
 
@@ -195,7 +195,7 @@ const onTouchEnd = (e) => {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 500;
-  color: #bbb3b3;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: opacity .3s;
@@ -207,7 +207,7 @@ const onTouchEnd = (e) => {
   top: 45%;
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--text-main);
   font-size: 2.6rem;
   display: none;
   align-items: center;

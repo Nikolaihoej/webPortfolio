@@ -95,7 +95,7 @@
 }
 
 .heroDescription {
-  color: #bbb3b3;
+  color: var(--text-secondary);
   font-size: 1.5rem;
   line-height: 2.2rem;
   margin-bottom: 20px;
@@ -103,12 +103,12 @@
 
 .highlightWord {
   transition: opacity 0.2s;
-  color: #FFF;
+  color: var(--text-main);
   font-weight: 600;
 }
 
 .heroText h2 {
-  color: #fff;
+  color: var(--text-main);
   font-size: 4rem;
   margin-bottom: 12px;
   line-height: 1.15;
