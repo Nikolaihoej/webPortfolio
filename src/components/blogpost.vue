@@ -2,28 +2,27 @@
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="blogpost-page">
       <button class="close-btn" @click="goBack">×</button>
-        <div class="blogpost-container">
+      <div class="blogpost-container">
         <header class="blogpost-header">
-            <div class="title-section">
-                <h1>{{ project.title }}</h1>
-                <div class="meta">
-                    <span v-if="project.author">made by {{ project.author }}</span>
-                    <span v-if="project.date"> • {{ project.date }}</span>
+          <div class="title-section">
+              <h1>{{ project.title }}</h1>
+              <div class="meta">
+                <div>
+                  <span v-if="project.author">made by {{ project.author }}</span>
+                  <span v-if="project.date"> • {{ project.date }}</span>
                 </div>
-                <p class="subtitle" v-if="project.subtitle">{{ project.subtitle }}</p>
-                <div class="extra-images" v-if="project.extraImages && project.extraImages.length">
-                  <img class="extra-image" v-for="(img, idx) in project.extraImages" :key="idx" :src="img" :alt="`Extra image ${idx + 1}`"/>
-                </div>
-            </div>
+                <a v-if="project.link" :href="project.link" class="projectBtn btn btn-outline-light" target="_blank" rel="noopener noreferrer">Check it out</a>
+              </div>
+              <div class="extra-images" v-if="project.extraImages && project.extraImages.length">
+                <img class="extra-image" v-for="(img, idx) in project.extraImages" :key="idx" :src="img" :alt="`Extra image ${idx + 1}`"/>
+              </div>
+          </div>
+          <h4 class="techTitle">Technologies Used</h4>
+          <section class="tech-icons" v-if="project.techIcons && project.techIcons.length">
+            <i v-for="(icon, idx) in project.techIcons" :key="idx" :class="['tech-icon', icon]" aria-hidden="true"></i>
+          </section>
         </header>
-        <section class="tech-icons" v-if="project.techIcons && project.techIcons.length">
-          <i
-            v-for="(icon, idx) in project.techIcons"
-            :key="idx"
-            :class="['tech-icon', icon]"
-            aria-hidden="true"
-          ></i>
-        </section>
+
 
         <section class="blogpost-content">
             <p>{{ project.description }}</p>
@@ -34,7 +33,8 @@
             <p>{{ project.content }}</p>
             </div>
         </section>
-        </div>
+
+      </div>
     </div>
   </div>
 </template>
@@ -76,8 +76,17 @@ function goBack() {
   margin-bottom: 24px;
 }
 
-.project-image {
+.techTitle {
+  color: #fff;
+  margin-top: 8px;
+  font-size: 1.3rem;
+}
 
+.tech-icons {
+  display: flex;
+  color: #fff;
+  font-size: 1.5rem;
+  gap: 8px;
 }
 
 .title-section {
@@ -96,6 +105,9 @@ h1 {
 }
 
 .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: #bbb3b3;
   font-size: 1rem;
   margin-bottom: 10px;
@@ -113,6 +125,17 @@ h1 {
   line-height: 1.7;
   color: #e0e0e0;
   margin-top: 8px;
+}
+
+.projectBtn {
+  opacity: 0.5;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  border: 4px solid #fff;
+}
+
+.projectBtn:hover {
+  opacity: 1;
 }
 
 .close-btn {
@@ -133,10 +156,9 @@ h1 {
 
 .extra-images {
   display: flex;
-  gap: 22px;
   width: 100%;
   height: auto;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   margin-top: 12px;

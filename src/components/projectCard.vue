@@ -1,5 +1,5 @@
 <template>
-  <div class="card-wrap" @click="handleCardClick" @mousemove="handleMouseMove" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" ref="card">
+  <div class="card-wrap" @mousemove="handleMouseMove" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" ref="card">
     <div class="card" :style="cardStyle">
       <div class="card-bg" :style="[cardBgTransform, cardBgImage]"></div>
         <div class="card-info">
@@ -74,11 +74,6 @@ function handleMouseLeave() {
   }, 1000);
 }
 
-function handleCardClick() {
-  if (!props.project.disabled && props.project.link) {
-    window.open(props.project.link, '_blank', 'noopener');
-  }
-}
 </script>
 
 <style scoped>
