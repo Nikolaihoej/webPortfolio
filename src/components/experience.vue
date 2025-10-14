@@ -127,17 +127,21 @@ defineExpose({ directives: { intersect: vIntersect } });
 }
 
 .modern-card {
-  background: var(--secondary-bg);
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, var(--secondary-bg) 100%);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255,255,255,0.13);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.13);
+  transition: background .35s, backdrop-filter .35s, box-shadow .35s, transform 0.18s;
+  overflow: hidden;
   padding: 22px 28px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  transition: transform 0.18s, box-shadow 0.18s;
-  border: 1px solid #3a2e5a;
   margin-bottom: 22px;
 }
+
 .modern-card:hover {
   transform: translateY(-4px) scale(1.025);
-  box-shadow: 0 8px 32px rgba(160,132,232,0.18);
+  box-shadow: 0 12px 40px rgba(160,132,232,0.18);
+  background: linear-gradient(135deg, rgba(255,255,255,0.28) 0%, var(--secondary-bg) 100%);
 }
 
 .timeline {

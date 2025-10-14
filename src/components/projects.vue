@@ -1,6 +1,7 @@
 <template>
   <section id="projects">
-    <div class="container">
+    <div class="section-bg-ufo"></div>
+    <div class="container position-relative ufo-left-wrap">
       <div class="sectionTitle text-center">
         <h1>Projects</h1>
       </div>
@@ -9,7 +10,7 @@
       </div>
     </div>
     <div class="container">
-      <div class="align-items-center justify-content-center d-flex flex-wrap ">
+      <div class="projectContainer d-flex flex-wrap justify-content-center ">
         <div v-for="(project, index) in projects" :key="project.id" class="project-fade-in" v-intersect:style="{ transitionDelay: (index * 200) + 'ms' }" @click="openBlog(project)" style="cursor: pointer;">
           <ProjectCard :project="project" />
         </div>
@@ -54,6 +55,12 @@ function openBlog(project) {
 </script>
   
 <style scoped>
+.projectContainer {
+  position: relative;
+  z-index: 10;
+  scale: 90%;
+}
+
 section {
   min-height: 100vh;
 }
@@ -84,6 +91,51 @@ h1 {
   transition: opacity 0.6s cubic-bezier(.4,0,.2,1) var(--delay,0ms), transform 0.6s cubic-bezier(.4,0,.2,1) var(--delay,0ms);
 }
 
+.section-bg-ufo {
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  background: url('@/assets/images/ufoProjector.png') no-repeat left;
+  pointer-events: none;
+  top: 2000px;
+  left: -500px;
+  z-index: 10;
+}
+.section-bg-ufo::after {
+  content: "";
+  position: absolute;
+  left: 664px;   /* Move cone tip to match UFO projector */
+  top: 38px;     /* Move cone tip to match UFO projector */
+  width: 1000px;
+  height: 850px;
+  background: linear-gradient(90deg, rgba(0,255,200,0.25) 0%, rgba(0,180,255,0.12) 80%, transparent 100%);
+  clip-path: polygon(0 49%, 600% -236%, 105% 100%, -4% 49%);
+  filter: blur(16px);
+  pointer-events: none;
+  z-index: 9;
+  transform: rotate(18deg);
+  animation: ufo-flicker 1.2s infinite;
+}
+
+@keyframes ufo-flicker {
+  0%   { opacity: 0.7; filter: blur(16px); }
+  10%  { opacity: 0.5; filter: blur(18px); }
+  20%  { opacity: 0.8; filter: blur(14px); }
+  35%  { opacity: 0.6; filter: blur(17px); }
+  50%  { opacity: 0.9; filter: blur(15px); }
+  65%  { opacity: 0.6; filter: blur(16px); }
+  80%  { opacity: 0.8; filter: blur(18px); }
+  100% { opacity: 0.7; filter: blur(16px); }
+}
+
+@media (max-width: 900px) {
+  .section-bg-ufo {
+    width: 180px;
+    height: 180px;
+    opacity: 0.4;
+  }
+}
+
 @media (max-width: 900px) {
   .sectionDescription {
     font-size: 1rem;
@@ -97,6 +149,10 @@ h1 {
   
   .sectionTitle {
     margin-bottom: 0;
+  }
+
+  .section-bg-ufo {
+    display: none;
   }
 }
 </style>
