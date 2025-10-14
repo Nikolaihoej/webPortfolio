@@ -11,7 +11,7 @@ export const useProjectsStore = defineStore('projects', {
         description: 'Developed in Google AppSheet, ToolTracker is an internal tool inventory and loan system designed to simplify equipment booking, tracking, and maintenance processes.',
         highlightText: "Click the card for more information",
         image: new URL("@/assets/images/tooltrackerImg.svg", import.meta.url).href,
-        content: [
+        details: [
             "I developed the entire solution from the ground up, gaining hands-on experience with AppSheet's application structure, database integration, and automation features. Through this project, I learned how to design efficient data models, implement conditional logic, and automate key workflows such as sending notification emails and archiving completed loans.",
             "Beyond development, I designed the logo, defined the app's overall structure and layout, and created a user guide to make onboarding straightforward and efficient.",
             "The app is currently deployed internally, and I'm finalizing the documentation and fine-tuning the last details. Once real-world usage data and feedback are available, I'll update this page with new insights and screenshots."
@@ -32,7 +32,7 @@ export const useProjectsStore = defineStore('projects', {
         description: 'This portfolio was developed using Vue 3 and the Composition API. It serves as a personal project to demonstrate my technical skills, design approach, and overall experience in frontend development.',
         highlightText: "Click the card for more information",
         image: new URL("@/assets/images/portfolio.svg", import.meta.url).href,
-        content: [
+        details: [
             "Paragraph one text here.",
             "Paragraph two text here.",
             "Paragraph three text here."
@@ -59,7 +59,7 @@ export const useProjectsStore = defineStore('projects', {
         description: "This Canva project showcases my expertise in graphic design and practical use of design theory in developing brochures and posters.",
         highlightText: "Click the card for more information",
         image: new URL("@/assets/images/tesBrochurer.svg", import.meta.url).href,
-                content: [
+                details: [
             "Paragraph one text here.",
             "Paragraph two text here.",
             "Paragraph three text here."
@@ -81,7 +81,7 @@ export const useProjectsStore = defineStore('projects', {
         description: "This is my bachelor project that I worked on during my studies as a web-developer and it's made as a group project where i mainly handled the frontend.",
         highlightText: "Click the card for more information",
         image: new URL("@/assets/images/Biezy.svg", import.meta.url).href,
-                content: [
+                details: [
             "Paragraph one text here.",
             "Paragraph two text here.",
             "Paragraph three text here."

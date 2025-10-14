@@ -1,5 +1,5 @@
 <template>
-  <nav class="navRoot" :class="{ rounded: isSticky }" aria-label="Main navigation">
+  <nav class="navRoot" :class="{ navGlass: isSticky }" aria-label="Main navigation">
     <div class="navContent">
       <button class="burger" :class="{ open: menuOpen }" @click="toggleMenu" :aria-expanded="menuOpen.toString()" aria-label="Toggle navigation menu">
         <span></span><span></span><span></span>
@@ -91,22 +91,21 @@ html { scroll-behavior: smooth; }
   position: sticky;
   top: 0;
   z-index: 50;
-  transition:  background .35s, backdrop-filter .35s, border-radius .35s, box-shadow .35s;
+  transition:  background .35s, backdrop-filter .35s, box-shadow .35s;
   background: transparent;
   backdrop-filter: none;
   box-shadow: none;
-  border-radius: 32px;
   overflow: hidden;
 }
 
 /* Sticky, rounded navbar */
-.navRoot.rounded {
-  background: rgba(31, 26, 41, 0.65);
-  backdrop-filter: blur(12px) saturate(1.2);
-  box-shadow: 0 2px 24px 0 rgba(0,0,0,0.12);
-  border-radius: 32px;
+.navRoot.navGlass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(31,26,41,0.65) 100%);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18);
+  transition: background .35s, backdrop-filter .35s, box-shadow .35s;
+  overflow: hidden;
 }
-
 
 .navContent {
   width: 100%;
@@ -211,6 +210,7 @@ html { scroll-behavior: smooth; }
   gap: 32px;
   opacity: 1;
   transform: translateX(0);
+  
 }
 
 .side-fade-enter-active, .side-fade-leave-active {
@@ -253,7 +253,7 @@ html { scroll-behavior: smooth; }
     width: 100%;
     max-width: 100%;
   }
-  .navRoot.rounded {
+  .navRoot.navGlass {
     background: transparent !important;
     backdrop-filter: none !important;
     border-radius: 0 !important;
