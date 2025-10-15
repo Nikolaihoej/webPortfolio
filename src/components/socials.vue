@@ -141,6 +141,7 @@ onMounted(() => {
 .socialButton:hover {
   transform: scale(1.2);
   box-shadow: rgba(46, 194, 187, 0.644) 0px 4px 16px, rgba(101, 187, 190, 0.5) 0px 8px 24px, rgba(77, 151, 147, 0.185) 0px 16px 56px;
+  transition: transform 0.2s ease-in;
 }
 
 .socialButton {
@@ -151,12 +152,17 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--secondary-bg);
   color: var(--text-main);
   z-index: 10;
-  transition: transform 0.2s ease-in;
   box-shadow: rgba(46, 194, 187, 0.171) 0px 4px 16px, rgba(101, 187, 190, 0.164) 0px 8px 24px, rgba(77, 151, 147, 0.116) 0px 16px 56px;
   cursor: pointer;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, var(--secondary-bg) 100%);
+  backdrop-filter: blur(18px) saturate(1.5);
+  border: 1.5px solid rgba(255,255,255,0.13);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18), 0 1.5px 6px 0 rgba(0,0,0,0.13);
+  transition: background .35s, backdrop-filter .35s, box-shadow .35s, transform 0.18s ;
+  overflow: hidden;
+  padding: 22px 28px;
 }
 
 .socialButton a {

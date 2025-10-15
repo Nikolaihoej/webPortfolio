@@ -95,7 +95,7 @@ function handleMouseLeave() {
   background-color: transparent;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.281), 0 1.5px 6px 0 rgba(0, 0, 0, 0.267), inset #333 0 0 0 1.5px, inset rgba(255, 255, 255, 0.13) 0 0 0 2px;
+  box-shadow: 0 8px 24px 0 rgba(46, 194, 187, 0.644) 0px 4px 16px, rgba(101, 187, 190, 0.5) 0px 8px 24px, rgba(77, 151, 147, 0.185) 0px 16px 56px;
   transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
   flex-shrink: 0;
   z-index: 0;
@@ -163,7 +163,7 @@ function handleMouseLeave() {
   z-index: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.753) 100%);
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(46, 194, 187, 0.644) 100%);
   opacity: 0;
   transform: translateY(100%);
   transition: 2s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -187,7 +187,7 @@ function handleMouseLeave() {
   transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .card-wrap:hover .card {
-  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.336), 0 2px 8px 0 rgba(0, 0, 0, 0.329), inset #333 0 0 0 2px, inset #fff 0 0 0 2.5px;
+  box-shadow: 0 16px 32px 0 rgba(46, 194, 187, 0.644) 0px 4px 16px, rgba(101, 187, 190, 0.5) 0px 8px 24px, rgba(77, 151, 147, 0.185) 0px 16px 56px;
   transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 1s cubic-bezier(0.23, 1, 0.32, 1);
 }
 

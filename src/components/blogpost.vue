@@ -1,9 +1,9 @@
 <template>
   <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
     <div class="blogpost-page">
-      <button class="close-btn" @click="goBack">x</button>
       <div class="blogpost-container">
         <header class="blogpost-header">
+          <div class="close-btn-Container"><i class="fa-solid fa-xmark close-btn" @click="goBack"></i></div>
           <div class="title-section">
             <h1>{{ project.title }}</h1>
             <div class="meta">
@@ -169,7 +169,7 @@ h1 {
 .blogpost-details {
   font-size: 1.15rem;
   line-height: 1.7;
-  color: var(--text-secondary);
+  color: var(--text-main);
   margin-top: 8px;
   margin-bottom: 24px;
 }
@@ -185,20 +185,20 @@ h1 {
   opacity: 1;
 }
 
-.close-btn {
-  position: absolute;
-  top: 0px;
-  right: 32px;
-  background: none;
-  border: none;
-  font-size: 5rem;
-  color: #fff;
+.close-btn-Container {
+  color: var(--text-main);
+  font-size: 1.5rem;
   cursor: pointer;
-  z-index: 10;
-  transition: color 0.2s;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  
 }
+
 .close-btn:hover {
-  color: var(--primary-bg);
+  color: var(--text-secondary);
+  transition: color 0.2s;
 }
 
 /* Desktop gallery */
@@ -307,12 +307,6 @@ h1 {
     align-items: center;
     font-size: 0.95rem;
     gap: 4px;
-  }
-
-  .close-btn {
-    position: absolute;
-    right: 12px;
-    font-size: 2.5rem;
   }
 
   .proj-btn {

@@ -140,7 +140,7 @@ defineExpose({ directives: { intersect: vIntersect } });
 
 .modern-card:hover {
   transform: translateY(-4px) scale(1.025);
-  box-shadow: 0 12px 40px rgba(160,132,232,0.18);
+  box-shadow: rgba(46, 194, 187, 0.644) 0px 4px 16px, rgba(101, 187, 190, 0.5) 0px 8px 24px, rgba(77, 151, 147, 0.185) 0px 16px 56px;
   background: linear-gradient(135deg, rgba(255,255,255,0.28) 0%, var(--secondary-bg) 100%);
 }
 
