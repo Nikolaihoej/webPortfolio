@@ -99,7 +99,7 @@ const education = ref([
   {
     degree: 'Multimedia Designer',
     institution: 'UCL - Erhvervsakademi og Professionshøjskole',
-    duration: '2017 - 2019',
+    duration: '2021 - 2023',
     description: 'Focused on digital design, UX/UI, and multimedia production.'
   }
 ]);
