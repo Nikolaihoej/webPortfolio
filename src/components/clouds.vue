@@ -1,52 +1,76 @@
 <template>
   <div id="clouds">
-    <div v-for="cloud in clouds" class="cloud" :key="cloud.id" :style="{ top: cloud.top + 'px', opacity: cloud.opacity, transform: `scale(${cloud.scale})`, animation: `moveclouds ${cloud.speed}s linear forwards`, animationDelay: `${cloud.delay}s` }" @animationend="removeCloud(cloud.id)" ></div>
+    <div v-for="cloud in clouds" class="cloud" :key="cloud.id" :style="cloudStyle(cloud)" @animationend="removeCloud(cloud.id)"></div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const clouds = ref([])
+let nextId = 0
+let cloudInterval = null
 
 function randomBetween(min, max) {
   return Math.random() * (max - min) + min
 }
 
-let nextId = 0
-const clouds = ref([])
+function isMobile() {
+  return window.innerWidth <= 600
+}
 
-function addCloud() {
-  const isMobile = window.innerWidth <= 600
-  const topMin = isMobile ? 80 : 250
-  const topMax = isMobile ? 180 : 600
-  clouds.value.push({
+function createCloud() {
+  const topMin = isMobile() ? 80 : 250
+  const topMax = isMobile() ? 180 : 600
+  return {
     id: nextId++,
     top: randomBetween(topMin, topMax),
-    opacity: randomBetween(0.2, 0.6),
+    opacity: randomBetween(0.2, 0.3),
     scale: randomBetween(0.6, 1),
     speed: randomBetween(40, 70),
     delay: 0
-  })
+  }
+}
+
+function addCloud() {
+  clouds.value.push(createCloud())
 }
 
 function removeCloud(id) {
   clouds.value = clouds.value.filter(cloud => cloud.id !== id)
 }
 
+function cloudStyle(cloud) {
+  return {
+    top: cloud.top + 'px',
+    opacity: cloud.opacity,
+    transform: `scale(${cloud.scale})`,
+    animation: `moveclouds ${cloud.speed}s linear forwards`,
+    animationDelay: `${cloud.delay}s`
+  }
+}
+
 function startCloudGenerator() {
-  setInterval(() => {
+  cloudInterval = setInterval(() => {
     addCloud()
   }, randomBetween(1200, 3500))
 }
 
-for (let i = 0; i < 5; i++) addCloud()
-startCloudGenerator()
+onMounted(() => {
+  for (let i = 0; i < 2; i++) addCloud()
+  startCloudGenerator()
+})
+
+onUnmounted(() => {
+  clearInterval(cloudInterval)
+})
 </script>
 
 <style>
 #clouds {
   position: absolute;
   width: 100%;
-  height: 400px;
+  height: 90%;
   overflow: hidden;
   padding: 100px 0;
   z-index: -1;
@@ -79,7 +103,6 @@ startCloudGenerator()
 }
 
 @media (max-width: 600px) {
-
   .cloud {
     width: 120px;
     height: 36px;

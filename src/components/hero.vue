@@ -1,35 +1,46 @@
 <template>
-    <div class="hero-title">Nikolai Jensen</div>
-    <div class="hero-subtitle">Frontend Developer</div>
+    <div class="hero-container">
+        <h1 class="hero-title">Nikolai Jensen</h1>
+        <h3 class="hero-subtitle">Frontend Developer</h3>
+    </div>
 </template>
-<script setup></script>
+
+<script setup>
+</script>
 
 <style scoped>
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 100px;
+}
+
 .hero-title {
-    padding-top: 5%;
-    font-size: clamp(2.5rem, 8vw, 6rem);
     text-align: center;
     font-family: 'Vollkorn SC', serif;
-    font-weight: 500;
-    word-break: break-word;
+    font-weight: 600;
+    font-size: 4rem;
     color: #363636;
 }
 
 .hero-subtitle {
-    margin-top: -1rem;
-    font-size: clamp(1.2rem, 4vw, 2rem);
     text-align: center;
     font-family: 'Catamaran', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 2rem;
     color: #363636;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .hero-title {
-        padding-top: 2rem;
+        font-size: 2rem;
     }
+
     .hero-subtitle {
-        margin-top: -0.5rem;
+        font-size: 1rem;
     }
 }
 </style>
