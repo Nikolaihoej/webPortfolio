@@ -126,7 +126,7 @@ const info = computed(() => towerInfo[props.tower])
     scale: 0.8;
     height: auto;
     left: 0%;
-    top: 50%;
+    top: 70%;
   }
 }
 </style>

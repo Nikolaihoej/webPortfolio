@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import TowerTooltip from './TowerToolTip.vue'
 
 const activeTower = ref(null)
@@ -62,6 +62,27 @@ const towerLinks = {
   mail: 'mailto:nikolaihoj@gmail.com',
   linkedin: 'https://www.linkedin.com/in/nikolai-jensen-472577195/',
   github: 'https://github.com/Nikolaihoej'
+}
+
+onMounted(() => {
+  document.addEventListener('mousedown', handleDocumentClick)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('mousedown', handleDocumentClick)
+})
+
+function handleDocumentClick(event) {
+  const tooltipEl = tooltipWrapper.value
+  // If tooltip is open and click is outside tooltip and towers, close it
+  if (
+    activeTower.value &&
+    tooltipEl &&
+    !tooltipEl.contains(event.target) &&
+    !event.target.closest('.island-towers')
+  ) {
+    activeTower.value = null
+  }
 }
 </script>
 
