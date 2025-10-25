@@ -1,7 +1,8 @@
 <template>
-    <div class="nav-container">
-        <a class="btn">Projects</a>
-    </div>
+  <div class="nav-container">
+    <router-link class="btn" to="/">Island</router-link>
+    <router-link class="btn" to="/projects">Projects</router-link>
+  </div>
 </template>
 <script setup></script>
 
@@ -9,21 +10,18 @@
 .nav-container {
   display: flex;
   justify-content: flex-end;
-  gap: 2rem;
   color: #414040;
   padding: 1rem;
 }
 
-a {
+.btn {
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
   color: #404040;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.btn {
   text-decoration: none;
 
 }
+
 </style>

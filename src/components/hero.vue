@@ -20,7 +20,7 @@
 
 .hero-title {
     text-align: center;
-    font-family: 'Vollkorn SC', serif;
+
     font-weight: 600;
     font-size: 4rem;
     color: #363636;
@@ -28,7 +28,7 @@
 
 .hero-subtitle {
     text-align: center;
-    font-family: 'Catamaran', sans-serif;
+
     font-weight: 500;
     font-size: 2rem;
     color: #363636;

@@ -156,6 +156,5 @@ function handleDocumentClick(event) {
 .island-ground.inactive,
 .island-gradient-bg.inactive {
   filter: grayscale(0.5) brightness(1) opacity(0.3) blur(6px);
-
 }
 </style>
