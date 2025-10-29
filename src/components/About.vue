@@ -1,58 +1,98 @@
 <template>
-    <div class="about-container">
-        <div class="about-content">
-            <!-- Particle container -->
-            <div class="particles-container">
-                <div v-for="p in particles" :key="p.id" class="particle" :style="{ left: p.left, background: p.color, animationDuration: p.duration }"></div>
-            </div>
-            <img class="wizard-shelf" src="../assets/images/wizardShelf.png" alt="Book Shelf" @mouseenter="showStack = true" @mouseleave="showStack = false">
-            <div class="wizard-container">
-              <img class="wizard" src="../assets/images/wizardme.png" alt="Wizard Me" @mouseenter="showText = true" @mouseleave="showText = false">
-            </div>
-            <img class="about-platform" src="../assets/images/emptyPlatform.png" alt="empty platform"/>
-        </div>
-        <div class="stack-text" :class="{ 'animate__animated animate__fadeInUp': showStack, 'animate__animated animate__fadeOutDown': !showStack }">
-            <h1>Tech Stack</h1>
-            <p>These are the technologies I have worked with and am familiar with:</p>
-            <div class="stack-icons">
-                <i class="fa-brands fa-html5" title="HTML"></i>
-                <i class="fa-brands fa-css3-alt" title="CSS"></i>
-                <i class="fa-brands fa-js" title="JavaScript"></i>
-                <i class="fa-brands fa-node-js" title="Node.js"></i>
-                <i class="fa-brands fa-vuejs" title="Vue.js"></i>
-                <i class="fa-brands fa-php" title="PHP"></i>
-                <i class="fa-brands fa-laravel" title="Laravel"></i>
-                <i class="fa-brands fa-wordpress" title="WordPress"></i>
-                <i class="fa-solid fa-database" title="SQL"></i>
-                <i class="fa-brands fa-envira" title="MongoDB"></i>
-                <i class="fa-brands fa-jsfiddle" title="Express"></i>
-            </div>
-        </div>
-        <div class="wizard-text" :class="{ 'animate__animated animate__fadeInUp': showText, 'animate__animated animate__fadeOutDown': !showText }">
-            <h1>About Me</h1>
-            <p>
-                Hey, my name is Nikolai. I'm a web developer from Denmark with a creative mindset. I use that creativity to solve problems through design and code, always aiming to build things that has a purpose.
-            </p>
-        </div>
+  <div class="about-container">
+    <div class="about-content">
+      <!-- Particle container -->
+      <div class="particles-container">
+        <div v-for="p in particles" :key="p.id" class="particle" :style="{ left: p.left, background: p.color, animationDuration: p.duration }"></div>
+      </div>
+      <img class="wizard-shelf" src="../assets/images/wizardShelf.png" alt="Book Shelf" @mouseenter="handleShelfEnter" @mouseleave="handleShelfLeave">
+      <div class="wizard-container">
+        <img class="wizard" src="../assets/images/wizardme.png" alt="Wizard Me" @mouseenter="handleWizardEnter" @mouseleave="handleWizardLeave">
+      </div>
+      <img class="about-platform" src="../assets/images/emptyPlatform.png" alt="empty platform"/>
     </div>
+    <div
+      class="stack-text" :class="{ 'animate__animated animate__fadeInUp': showStack && hasHoveredStack, 'animate__animated animate__fadeOutDown': !showStack && hasHoveredStack }" :style="{ opacity: showStack ? 1 : 0 }">
+      <h1>Tech Stack</h1>
+      <p>These are the technologies I have worked with and am familiar with:</p>
+      <div class="stack-icons">
+        <i class="fa-brands fa-html5" title="HTML"></i>
+        <i class="fa-brands fa-css3-alt" title="CSS"></i>
+        <i class="fa-brands fa-js" title="JavaScript"></i>
+        <i class="fa-brands fa-node-js" title="Node.js"></i>
+        <i class="fa-brands fa-vuejs" title="Vue.js"></i>
+        <i class="fa-brands fa-php" title="PHP"></i>
+        <i class="fa-brands fa-laravel" title="Laravel"></i>
+        <i class="fa-brands fa-wordpress" title="WordPress"></i>
+        <i class="fa-solid fa-database" title="SQL"></i>
+        <i class="fa-brands fa-envira" title="MongoDB"></i>
+        <i class="fa-brands fa-jsfiddle" title="Express"></i>
+      </div>
+    </div>
+    <div class="wizard-text" :class="{ 'animate__animated animate__fadeInUp': showText && hasHoveredText, 'animate__animated animate__fadeOutDown': !showText && hasHoveredText }" :style="{ opacity: showText ? 1 : 0 }">
+      <h1>About Me</h1>
+      <p>
+        Hey, my name is Nikolai. I'm a web developer from Denmark with a creative mindset. I use that creativity to solve problems through design and code, always aiming to build things that has a purpose.
+      </p>
+    </div>
+  </div>
 </template>
 <script setup>
 import { ref } from 'vue';
 
-const particleCount = 6
-const particles = Array.from({ length: particleCount }, (_, i) => ({
-  id: i,
-  left: `${18 + i * 6}%`, // spread out horizontally
-  duration: `${2.5 + i * 0.5}s`, // different animation durations
-  color: [
-    '#b3e5fc', '#b3fcff', '#a2f0f0', '#84f8f8', '#99d9e9', '#9ef1ed'
-  ][i % 6]
-}))
+const particleCount = 6;
+const particleColors = [
+  '#b3e5fc', '#b3fcff', '#a2f0f0', '#84f8f8', '#99d9e9', '#9ef1ed'
+];
 
-const showText = ref(false)
-const showStack = ref(false)
+const particles = [];
+for (let i = 0; i < particleCount; i++) {
+  particles.push({
+    id: i,
+    left: `${18 + i * 6}%`,
+    duration: `${2.5 + i * 0.5}s`,
+    color: particleColors[i % particleColors.length]
+  });
+}
+
+const showText = ref(false);
+const showStack = ref(false);
+const hasHoveredText = ref(false);
+const hasHoveredStack = ref(false);
+
+let wizardLeaveTimer = null;
+let shelfLeaveTimer = null;
+
+function handleWizardEnter() {
+  showText.value = true;
+  hasHoveredText.value = true;
+  clearTimeout(wizardLeaveTimer);
+}
+function handleWizardLeave() {
+  if (window.innerWidth < 900) {
+    showText.value = false;
+  } else {
+    wizardLeaveTimer = setTimeout(() => {
+      showText.value = false;
+    }, 1200);
+  }
+}
+
+function handleShelfEnter() {
+  showStack.value = true;
+  hasHoveredStack.value = true;
+  clearTimeout(shelfLeaveTimer);
+}
+function handleShelfLeave() {
+  if (window.innerWidth < 900) {
+    showStack.value = false;
+  } else {
+    shelfLeaveTimer = setTimeout(() => {
+      showStack.value = false;
+    }, 1200);
+  }
+}
 </script>
-
 <style scoped>
 .about-container {
   width: 80%;
@@ -64,7 +104,6 @@ const showStack = ref(false)
 .about-content {
   position: relative;
   width: 100%;
-
 }
 
 /* Particle container for easy movement */

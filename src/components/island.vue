@@ -14,19 +14,18 @@
             </div>
           </div>
           <img class="island-ground" :class="{ inactive: activeTower }" src="../assets/images/static_ground_bq.png" alt="island ground"/>
-          <Transition name="fade-bottom">
-            <div v-if="activeTower" ref="tooltipWrapper" @mouseenter="onTooltipHover(true)" @mouseleave="onTooltipHover(false)">
+            <div v-if="activeTower" ref="tooltipWrapper" @mouseenter="onTooltipHover(true)" @mouseleave="onTooltipHover(false)" :class="[ 'animate__animated', showTooltip ? 'animate__fadeInUp' : 'animate__fadeOutDown' ]">
               <TowerTooltip :tower="activeTower" :link="towerLinks[activeTower]" />
             </div>
-          </Transition>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import TowerTooltip from './TowerToolTip.vue'
 
+const showTooltip = computed(() => !!activeTower.value)
 const activeTower = ref(null)
 const tooltipWrapper = ref(null)
 
