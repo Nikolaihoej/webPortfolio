@@ -55,16 +55,16 @@ const showStack = ref(false)
 
 <style scoped>
 .about-container {
-  width: 100%;
-  max-width: 1080px;
+  width: 80%;
+  max-width: 800px;
   margin: 0 auto;
-  padding-top: 250px;
+  margin-top: 260px;
 }
 
 .about-content {
   position: relative;
   width: 100%;
-  max-width: 1080px;
+
 }
 
 /* Particle container for easy movement */
@@ -158,7 +158,7 @@ const showStack = ref(false)
   letter-spacing: 1.6px;
   top: 26%;
   left: 18%;
-  width: 500px;
+  width: 400px;
   color: #363636;
   padding: 16px;
   z-index: 3;
@@ -170,16 +170,24 @@ const showStack = ref(false)
   flex-wrap: wrap;
   gap: 18px;
   margin-top: 18px;
-  font-size: 2.6rem;
+  font-size: 2rem;
   align-items: center;
   color: #363636;
 }
 
 @media (max-width: 900px) {
   .wizard-text {
-    position: static;
     font-size: 1rem;
-    width: 90%;
+    width: 100%;
+    top: 60%;
+    left: 0;
+  }
+
+  .stack-text {
+    font-size: 1rem;
+    width: 100%;
+    top: 60%;
+    left: 0;
   }
 
   .particle {
@@ -188,8 +196,10 @@ const showStack = ref(false)
   }
 
   .about-container {
-    padding-top: 0;
+    margin-top: 162px;
+    width: 100%;
   }
+
 }
 
 </style>

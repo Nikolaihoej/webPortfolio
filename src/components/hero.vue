@@ -1,7 +1,7 @@
 <template>
     <div class="hero-container">
         <h1 class="hero-title">Nikolai Jensen</h1>
-        <h3 class="hero-subtitle">Web Developer</h3>
+        <p class="hero-subtitle">Web Developer</p>
     </div>
 </template>
 
@@ -15,22 +15,19 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin-bottom: 100px;
 }
 
 .hero-title {
     text-align: center;
-
     font-weight: 600;
-    font-size: 4rem;
+    font-size: 3rem;
     color: #363636;
 }
 
 .hero-subtitle {
     text-align: center;
-
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #363636;
 }
 

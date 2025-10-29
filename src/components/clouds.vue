@@ -53,7 +53,7 @@ function cloudStyle(cloud) {
 function startCloudGenerator() {
   cloudInterval = setInterval(() => {
     addCloud()
-  }, randomBetween(1200, 3500))
+  }, 6000) // clouds every 4 to 7 seconds
 }
 
 onMounted(() => {
@@ -99,7 +99,7 @@ onUnmounted(() => {
 
 @keyframes moveclouds {
   0% { left: 100%; }
-  100% { left: -100%; }
+  100% { left: -200px; }
 }
 
 @media (max-width: 600px) {

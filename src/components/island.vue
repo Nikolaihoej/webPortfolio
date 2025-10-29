@@ -109,8 +109,9 @@ function handleDocumentClick(event) {
 
 /* Inner container to maintain aspect ratio */
 .island-inner-container {
+  margin-top: 80px;
   position: relative;
-  width: min(100%, 1080px);
+  width: min(100%, 900px);
   aspect-ratio: 16 / 9;
 }
 

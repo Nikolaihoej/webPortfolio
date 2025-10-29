@@ -48,12 +48,12 @@ const info = computed(() => towerInfo[props.tower])
   padding: 25px;
 }
 .tooltip-title{
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: #363636;
 }
 .tooltip-description {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   margin: 12px 0;
   color: #363636;
 }
@@ -73,14 +73,14 @@ const info = computed(() => towerInfo[props.tower])
   position: relative;
   display: inline-block;
   width: inherit;
-  padding: 6px 14px;
+  padding: 6px 8px;
   background: transparent;
   color: #363636;
   border: 4px solid #363636;
   border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   transition: border .1s ease-in-out, transform .2s ease-in-out;
 }
