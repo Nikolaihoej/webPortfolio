@@ -49,13 +49,13 @@ const info = computed(() => towerInfo[props.tower])
 }
 .tooltip-title{
   font-size: 3rem;
-  color: #414040;
+  color: #363636;
 }
 .tooltip-description {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 12px 0;
-  color: #414040;
+  color: #363636;
 }
 /* position for the tooltips */
 .tooltip-mail {
@@ -75,8 +75,9 @@ const info = computed(() => towerInfo[props.tower])
   width: inherit;
   padding: 6px 14px;
   background: transparent;
-  color: #414040;
-  border: 4px solid #414040;
+  color: #363636;
+  border: 4px solid #363636;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
   font-size: 1.1rem;

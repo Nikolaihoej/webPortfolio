@@ -27,7 +27,34 @@ function getEnterClass(route) {
 </script>
 
 <style>
-.animate__animated {
-  --animate-duration: 2s;
+
+.animate__slideOutLeft {
+  animation-name: slideOutLeftCustom;
+}
+
+.animate__slideInLeft {
+  animation-name: slideInLeftCustom;
+}
+
+@keyframes slideOutLeftCustom {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-120vw);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeftCustom {
+  0% {
+    transform: translateX(-120vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 </style>

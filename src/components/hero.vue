@@ -1,7 +1,7 @@
 <template>
     <div class="hero-container">
         <h1 class="hero-title">Nikolai Jensen</h1>
-        <h3 class="hero-subtitle">Frontend Developer</h3>
+        <h3 class="hero-subtitle">Web Developer</h3>
     </div>
 </template>
 

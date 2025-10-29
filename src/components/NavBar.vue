@@ -2,6 +2,7 @@
   <div class="nav-container">
     <router-link class="btn" to="/">Island</router-link>
     <router-link class="btn" to="/projects">Projects</router-link>
+    <router-link class="btn" to="/about">About</router-link>
   </div>
 </template>
 <script setup></script>
@@ -17,11 +18,10 @@
 .btn {
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
-  color: #404040;
+  color: #363636;
   font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
-
 }
 
 </style>
